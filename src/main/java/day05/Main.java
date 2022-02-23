@@ -32,9 +32,12 @@ public class Main {
         //List<Movie> movies = movieRepository.findAllMovies();
         //System.out.println(movies.toString());
 
+        RatingsRepository ratingsRepository = new RatingsRepository(dataSource);
+
         ActorsMoviesRepository actorsMoviesRepository = new ActorsMoviesRepository(dataSource);
 
         ActorsMoviesService actorsMoviesService = new ActorsMoviesService(actorRepository, movieRepository, actorsMoviesRepository);
+        MoviesRatingsService moviesRatingsService = new MoviesRatingsService(movieRepository, ratingsRepository);
 
         actorsMoviesService.insertMovieWithActors("Titanic",
                 LocalDate.of(1997,01,01),
@@ -44,5 +47,7 @@ public class Main {
                 LocalDate.of(2000,01,01),
                 List.of("Leonardo DiCaprio", "Toby Macguire"));
 
+        moviesRatingsService.addRatings("Titanic", 5, 3 ,2);
+        moviesRatingsService.addRatings("Great Gatsby", 1,3,2,5);
     }
 }
