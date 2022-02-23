@@ -1,11 +1,9 @@
-package day01;
+package day02;
 
 import org.flywaydb.core.Flyway;
 import org.mariadb.jdbc.MariaDbDataSource;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,6 +28,8 @@ public class Main {
         //System.out.println(actorRepository.findActor("J"));
 
         MovieRepository movieRepository = new MovieRepository(dataSource);
-        movieRepository.saveMovie("Titanic", LocalDate.of(1997,01,01));
+        //movieRepository.saveMovie("Titanic", LocalDate.of(1997,01,01));
+        List<Movie> movies = movieRepository.findAllMovies();
+        System.out.println(movies.toString());
     }
 }
